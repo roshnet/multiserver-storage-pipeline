@@ -70,9 +70,13 @@ def to_broker():
     f.save(secure_filename(f.filename))
 
     # [Read file and send to broker]
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'], f.filename)
-    with open(filepath, 'rb') as fp:
-        content = fp.read()
+    # filepath = os.path.join(app.config['UPLOAD_FOLDER'], f.filename)
+    filepath = f.filename
+    if os.path.isfile(filepath):
+        with open(filepath, 'rb') as fp:
+            content = fp.read()
+    else:
+        return "File saved, but not found to upload"    
 
     # Add logic to make <filename> unique
     upload = requests.post(os.path.join(BROKER_URL, f.filename),
