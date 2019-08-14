@@ -30,7 +30,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(11)
 app.config['UPLOAD_FOLDER'] = "storage"
 
-BROKER_URL = "http://localhost:6000/storage"
+BROKER_URL = "http://localhost:8000/storage"
 
 
 @app.route('/', methods=['GET', 'POST'])
